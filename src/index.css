@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Inter:wght@100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fredoka", sans-serif;
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "Playfair Display", serif;
+  
+  --color-luxury-red: #800000;
+  --color-luxury-gold: #d4af37;
+  --color-luxury-white: #f5f5f5;
+  --color-luxury-dark: #1a1a1a;
+}
+
+@layer base {
+  html, body {
+    @apply h-full w-full overflow-hidden touch-none select-none;
+    background-color: #1a1a1a;
+  }
+  
+  body {
+    @apply font-serif text-luxury-gold;
+  }
+}
+
+.kitchen-grid {
+  @apply relative aspect-square w-full max-w-[min(90vw,420px)] mx-auto rounded-lg bg-white shadow-2xl border-[12px] border-[#333] overflow-hidden;
+  /* Marble Checkerboard Pattern */
+  background-image: 
+    linear-gradient(45deg, #f0f0f0 25%, transparent 25%), 
+    linear-gradient(-45deg, #f0f0f0 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #f0f0f0 75%), 
+    linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
+  background-size: 40% 40%;
+  background-position: 0 0, 0 20%, 20% 20%, 20% 0;
+  background-color: #ffffff;
+}
+
+/* Kitchen Tile Overlay */
+.kitchen-grid::after {
+  content: '';
+  @apply absolute inset-0 pointer-events-none opacity-5;
+  background-image: 
+    linear-gradient(to right, #000 1px, transparent 1px),
+    linear-gradient(to bottom, #000 1px, transparent 1px);
+  background-size: 20% 20%;
+}
+
+.d-pad-button {
+  @apply flex items-center justify-center rounded-full bg-white shadow-[0_6px_0_0_#f0f0f0] active:shadow-none active:translate-y-[6px] transition-all duration-75 touch-none;
+}
+
+.order-card {
+  @apply flex flex-col rounded-sm border-l-8 border-luxury-red bg-white p-4 shadow-2xl min-w-[160px] relative overflow-hidden;
+}
+
+/* Custom Scrollbar for Orders */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
