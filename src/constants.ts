@@ -75,7 +75,6 @@ export const DISHES: Dish[] = [
     id: 'souffle',
     name: 'スフレ',
     icon: '🧁',
-    // スフレはコンロでベースを作り→オーブンで焼き→作業台で仕上げ→提供
     steps: ['PREP', 'STOVE', 'OVEN', 'TABLE', 'SERVE'],
     points: 160,
     color: '#B5EAD7',
@@ -84,10 +83,26 @@ export const DISHES: Dish[] = [
     id: 'duck_confit',
     name: '鴨のコンフィ',
     icon: '🍗',
-    // コンフィはコンロで下処理→オーブンで低温調理→作業台で盛り付け→提供
     steps: ['PREP', 'STOVE', 'OVEN', 'TABLE', 'SERVE'],
     points: 190,
     color: '#C7CEEA',
+  },
+  // ─── 超高難度（コースメニュー・6ステップ） ───
+  {
+    id: 'full_course',
+    name: 'フルコース',
+    icon: '👑',
+    steps: ['PREP', 'STOVE', 'OVEN', 'TABLE', 'GARNISH', 'SERVE'],
+    points: 400,
+    color: '#FFD700',
+  },
+  {
+    id: 'degustation',
+    name: 'デギュスタシオン',
+    icon: '🥂',
+    steps: ['PREP', 'GARNISH', 'STOVE', 'OVEN', 'TABLE', 'SERVE'],
+    points: 500,
+    color: '#C9A84C',
   },
 ];
 
@@ -114,5 +129,13 @@ export const STATIONS: Record<StationType, Position> = {
   NONE:    { x: -1, y: -1 },
 };
 
-export const GAME_DURATION = 60;
+export const GAME_DURATION = 90;
 export const ORDER_INTERVAL = 2500;
+
+export const REGULAR_CUSTOMERS = [
+  { id: 'tanaka',  name: '田中さん',   emoji: '👴', dishId: 'potage',      message: 'いつものポタージュを頼む'   },
+  { id: 'yamada',  name: '山田マダム', emoji: '👩‍🦳', dishId: 'terrine',     message: 'テリーヌを今日も一つ'       },
+  { id: 'sato',    name: '佐藤部長',   emoji: '👨‍💼', dishId: 'ratatouille', message: 'ラタトゥイユを頼む'         },
+  { id: 'suzuki',  name: '鈴木さん',   emoji: '🧑', dishId: 'crepe',       message: 'クレープをお願いします'     },
+  { id: 'miyamoto',name: '宮本シェフ', emoji: '🧑‍🍳', dishId: 'gratin',      message: 'グラタン、いつも通りに'     },
+];

@@ -17,24 +17,28 @@ export async function getDailySpecial() {
 
 export async function getMichelinReview(score: number) {
   try {
-    // 評価基準を厳しく設定 (以前の2倍)
-    let rank = "酷評";
-    if (score > 3000) rank = "伝説";
-    else if (score > 1500) rank = "一流";
-    else if (score > 800) rank = "並";
+    let rank = "CATASTROPHIQUE（惨劇）";
+    if (score > 3000) rank = "LÉGENDAIRE（伝説級）";
+    else if (score > 1500) rank = "EXCELLENT（一流）";
+    else if (score > 800) rank = "ACCEPTABLE（普通）";
+    else if (score > 300) rank = "MÉDIOCRE（凡庸）";
 
     const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
-      contents: `あなたは世界一厳格で、かつウィットに富んだ皮肉を愛するフランスの料理批評家です。
-シェフが${score}点（ランク：${rank}）という成績でシフトを終えました。
-この結果に対して、冷酷で、かつウィットに富んだ皮肉を交えた日本語の評価文を1つ送ってください。
-特に低スコアの場合は容赦なく、高スコアでもどこか鼻につくような言い回しを好みます。
-例：「この料理を犬に与えたら、犬が自分で料理を始めたよ」「君のキッチンにはシェフではなく、迷子が一人いるようだね」
-100文字以内で、非常に辛口にお願いします。`,
+      model: "gemini-2.5-flash-preview-04-17",
+      contents: `あなたはパリに本拠を置く、20年のキャリアを持つミシュランの覆面調査員です。
+冷静沈着で辛辣、しかし知性的な日本語で批評を書きます。
+今回のシェフのスコアは ${score} 点（評価ランク：${rank}）でした。
+
+以下のルールを厳守してください：
+- 文体は格調ある批評家口調（「〜であった」「〜と言わざるを得ない」など）
+- 感嘆詞（え、あ、おっ など）や口語的な出だしは一切使わない
+- スコアが低いほど辛辣に、高いほど渋々認める調子で
+- フランス語の料理用語や格言を1つ自然に織り交ぜる
+- 80〜120文字の日本語で1文のみ返答する`,
     });
-    return response.text || "君の料理を食べるくらいなら、空腹で死ぬ方を選ぶよ。";
+    return response.text?.trim() || "料理とは記憶に残るものだが、今宵の皿は忘却に値する。";
   } catch (error) {
     console.error("Gemini Error:", error);
-    return "評価に値しない。";
+    return "料理とは記憶に残るものだが、今宵の皿は忘却に値する。";
   }
 }

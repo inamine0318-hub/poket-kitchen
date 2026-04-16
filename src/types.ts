@@ -9,6 +9,8 @@ export interface Dish {
   color: string;
 }
 
+export type OrderType = 'normal' | 'vip' | 'regular' | 'rush' | 'course';
+
 export interface Order {
   id: string;
   dish: Dish;
@@ -16,6 +18,9 @@ export interface Order {
   startTime: number;
   limitTime: number;
   isVIP?: boolean;
+  orderType?: OrderType;
+  regularName?: string;
+  regularEmoji?: string;
 }
 
 export interface GameState {

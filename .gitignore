@@ -6,3 +6,5 @@ coverage/
 *.log
 .env*
 !.env.example
+replace_stations.mjs
+metadata.json
