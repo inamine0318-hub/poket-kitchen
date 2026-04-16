@@ -4,7 +4,7 @@ import path from 'path';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/pocket-kitchen/',
+  base: '/poket-kitchen/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
